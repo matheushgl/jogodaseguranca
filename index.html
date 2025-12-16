@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Jogo Da Segurança: Treinamento Corporativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">🛡️ O Jogo da Segurança <span class="highlight">Game</span></div>
+        <div id="user-stats" class="stats hidden">
+            <span>Olá, <strong id="display-name">Colaborador</strong></span>
+            <span class="badge-xp">XP: <strong id="score-points">0/3</strong></span>
+        </div>
+    </header>
+
+    <div id="login-screen" class="screen active">
+        <div class="card login-card">
+            <h2>Bem-vindo ao Treinamento</h2>
+            <p>Insira seus dados para iniciar a jornada de segurança.</p>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Seu Nome Completo" required>
+                <input type="email" id="email" placeholder="Seu E-mail Corporativo" required>
+                <button type="submit" class="btn-primary">Iniciar Acesso</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="content-screen" class="screen hidden">
+        <div class="module-container">
+            <h2>Módulos de Segurança</h2>
+            <p class="subtitle">Complete os 3 desafios para liberar a prova final.</p>
+
+            <div class="grid-modules">
+                <div class="module-card">
+                    <div class="icon">🔐</div>
+                    <div class="info">
+                        <h3>Módulo 1: Senhas Fortes</h3>
+                        <p>Criação e gestão de credenciais.</p>
+                    </div>
+                    <button id="btn-passwords" class="btn-lesson" onclick="showLesson('passwords')">Iniciar</button>
+                </div>
+
+                <div class="module-card">
+                    <div class="icon">🎣</div>
+                    <div class="info">
+                        <h3>Módulo 2: Phishing</h3>
+                        <p>Desafio: Identifique e-mails falsos.</p>
+                    </div>
+                    <button id="btn-phishing" class="btn-lesson" onclick="showLesson('phishing')">Jogar Desafio</button>
+                </div>
+
+                <div class="module-card">
+                    <div class="icon">💾</div>
+                    <div class="info">
+                        <h3>Módulo 3: LGPD</h3>
+                        <p>Proteção de dados sensíveis.</p>
+                    </div>
+                    <button id="btn-lgpd" class="btn-lesson" onclick="showLesson('lgpd')">Iniciar</button>
+                </div>
+            </div>
+
+            <button id="btn-start-quiz" class="btn-quiz" disabled onclick="startQuiz()">
+                🔒 Complete os Módulos para Liberar a Prova
+            </button>
+        </div>
+    </div>
+
+    <div id="lesson-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLesson()">&times;</span>
+            <h2 id="lesson-title">Título</h2>
+            <div id="lesson-body" class="lesson-body">
+                </div>
+            <button id="default-finish-btn" class="btn-finish" onclick="finishLesson()">Concluir Leitura</button>
+        </div>
+    </div>
+
+    <div id="quiz-screen" class="screen hidden">
+        <div class="card quiz-card">
+            <h2>Avaliação Final</h2>
+            <p>Responda às questões abaixo.</p>
+            <form id="quiz-form" onsubmit="event.preventDefault(); submitQuiz();">
+                <div id="quiz-container"></div>
+                <button type="submit" class="btn-submit-quiz">Enviar Respostas</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="result-screen" class="screen hidden">
+        <div class="card result-card">
+            <h2 id="result-title">Resultado</h2>
+            <p id="result-message"></p>
+            
+            <div id="certificate-area" class="hidden">
+                <button class="btn-certificate" onclick="generatePDF()">📄 Baixar Certificado PDF</button>
+            </div>
+            <button class="btn-back" onclick="location.reload()">Voltar ao Início</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
